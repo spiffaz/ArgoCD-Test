@@ -19,5 +19,6 @@ spec:
     - CreateNamespace=true
 
     automated:
-      selfHeal: true
-      prune: true
+      selfHeal: true # this overwrites all manually configured changes and syncs it with your desired configuraiton
+      prune: true # deletes old components after updates
+# argo cd checks every 3 minutes
