@@ -4,14 +4,14 @@ metadata:
   name: myapp-argo-application
   namespace: argocd
 spec:
-  project: default
+  project: default # can be used to group similar applications
 
   source:
-    repoURL: https://github.com/spiffaz/ArgoCD-Test.git
+    repoURL: https://github.com/spiffaz/ArgoCD-Test.git # The repo to sync for the application
     targetRevision: HEAD
     path: dev
   destination: 
-    server: https://kubernetes.default.svc
+    server: https://kubernetes.default.svc # kubernetes cluster url. because we are deploying in the same cluster we're in, im using the internal service url ``` kubectl get svc ```
     namespace: myapp
 
   syncPolicy:
