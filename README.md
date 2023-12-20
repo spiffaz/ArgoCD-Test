@@ -55,5 +55,11 @@ type: Opaque
 ```
 
 The value of password will be base64 encrypted because it is a secret. To decrypt, run the command below:
-`` echo Q2kyajZoRXhOMFA2TEduOA== | base64 --decode ``
+``` 
+echo Q2kyajZoRXhOMFA2TEduOA== | base64 --decode
+```
 (Replace the encrypted password with yours)
+
+Or you can run this instead `` kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo ``
+
+
