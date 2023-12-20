@@ -24,3 +24,34 @@ argocd-server-metrics                     ClusterIP   10.101.187.14    <none>   
 
 To port forward, run the command below
 ```kubectl port-forward -n argocd svc/argocd-server 8080:443```
+
+4) Access the Ui from the url in the response
+```
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+```
+127.0.0.1:8080 
+
+5) The default user is admin while the password is stored in a secret (```argocd-initial-admin-secret```)
+   
+``kubectl get secret argocd-initial-admin-secret -n argocd -o yaml``
+
+The result should look like this
+
+```
+apiVersion: v1
+data:
+  password: Q2kyajZoRXhOMFA2TEduOA==
+kind: Secret
+metadata:
+  creationTimestamp: "2023-12-20T07:45:34Z"
+  name: argocd-initial-admin-secret
+  namespace: argocd
+  resourceVersion: "1106"
+  uid: 910c42fb-1909-4b4f-96a9-efcf125d45f7
+type: Opaque
+```
+
+The value of password will be base64 encrypted because it is a secret. To decrypt, run the command below:
+`` echo Q2kyajZoRXhOMFA2TEduOA== | base64 --decode ``
+(Replace the encrypted password with yours)
